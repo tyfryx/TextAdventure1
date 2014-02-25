@@ -19,9 +19,13 @@ public class Game {
 		Room entry = new Room("Entry", "You stand in a room with large curtains on the walls");
 		Room diningRoom = new Room("Dining Room", "The smell of a recent feast makes your stomach rumble, and mouth water");
 		Room captainQuarters = new Room("Captain's Quarters", "The office of this particular captain shows a recent struggle");
+		Room courtyard = new Room("Courtyard", "An eerie silence looms, best if you go back inside");
+		
+		courtyard.addExit(entry);
 		
 		entry.addExit(diningRoom);
 		entry.addExit(captainQuarters);
+		entry.addExit(courtyard);
 		
 		diningRoom.addExit(entry);
 		
@@ -30,30 +34,7 @@ public class Game {
 		rooms.add(entry);
 		rooms.add(diningRoom);
 		rooms.add(captainQuarters);
-	}
-	private void showRoomInfo()
-	{
-		System.out.println(currentRoom.getEnteredRoomString());
-	}
-	private void setupNewGame()
-	{
-		for(Room room : rooms)
-		{
-			if(room.getName() == "Entry")
-				currentRoom = room;
-		}
-	}
-	private String input()
-	{
-		String input = "error";
-		Scanner scanner = new Scanner(System.in);
-		input = scanner.nextLine();	
-
-		return input;
-	}
-	private void moveRoom(Room nextRoom)
-	{
-		this.currentRoom = nextRoom;
+		rooms.add(courtyard);
 	}
 	public void gameLoop()
 	{
@@ -80,5 +61,32 @@ public class Game {
 				}
 			}
 		}
+	}
+	private String input()
+	{
+		String input = "error";
+		Scanner scanner = new Scanner(System.in);
+		input = scanner.nextLine();	
+
+		return input;
+	}
+	
+	private void moveRoom(Room nextRoom)
+	{
+		this.currentRoom = nextRoom;
+	}
+	
+	private void setupNewGame()
+	{
+		for(Room room : rooms)
+		{
+			if(room.getName() == "Entry")
+				currentRoom = room;
+		}
+	}
+	
+	private void showRoomInfo()
+	{
+		System.out.println(currentRoom.getEnteredRoomString());
 	}
 }
