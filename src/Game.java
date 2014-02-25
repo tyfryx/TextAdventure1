@@ -20,6 +20,7 @@ public class Game {
 		Room diningRoom = new Room("Dining Room", "The smell of a recent feast makes your stomach rumble, and mouth water");
 		Room captainQuarters = new Room("Captain's Quarters", "The office of this particular captain shows a recent struggle");
 		Room courtyard = new Room("Courtyard", "An eerie silence looms, best if you go back inside");
+		Room kitchen = new Room("Kitchen", "This kitchen is quite clean");
 		
 		courtyard.addExit(entry);
 		
@@ -28,6 +29,9 @@ public class Game {
 		entry.addExit(courtyard);
 		
 		diningRoom.addExit(entry);
+		diningRoom.addExit(kitchen);
+		
+		kitchen.addExit(diningRoom);
 		
 		captainQuarters.addExit(entry);
 		
